@@ -31,7 +31,7 @@ int Disassemble8080Op(unsigned char *codebuffer, int pc)
 		case 0x0b: printf("DCX	B"); break;
 		case 0x0c: printf("INR	C"); break;
 		case 0x0d: printf("DCR	C"); break;
-		case 0x0e: printf("MVI	C,#$%02x", code[1]); opbyes = 2; break;
+		case 0x0e: printf("MVI	C,#$%02x", code[1]); opbytes = 2; break;
 		case 0x0f: printf("RRC"); break;
 		
 		/* ................................ */
@@ -325,7 +325,8 @@ int Disassemble8080Op(unsigned char *codebuffer, int pc)
 	return opbytes;
 }
 
-int main(){
+int main(int argc, char**argv)
+{
 	return 0;
 }
 
