@@ -53,15 +53,19 @@ int Emulate8080Op(State8080* state)
 	
 	switch(*opcode)
 	{
-		case 0x00: UnimplementedInstruction(state); break;
-		case 0x01: UnimplementedInstruction(state); break;
+		case 0x00: break; //NOP
+		case 0x01: //LXI B 
+			state->c = opcode[1];
+			state->b = opcode[2];
+			state->pc += 2;
+		break;
 		case 0x02: UnimplementedInstruction(state); break;
 		case 0x03: UnimplementedInstruction(state); break;
 		case 0x04: UnimplementedInstruction(state); break;
 		case 0x05: UnimplementedInstruction(state); break;
 		case 0x06: UnimplementedInstruction(state); break;
 		case 0x07: UnimplementedInstruction(state); break;
-		case 0x08: UnimplementedInstruction(state); break;
+		case 0x08: break; //NOP
 		case 0x09: UnimplementedInstruction(state); break;
 		case 0x0a: UnimplementedInstruction(state); break;
 		case 0x0b: UnimplementedInstruction(state); break;
@@ -70,7 +74,7 @@ int Emulate8080Op(State8080* state)
 		case 0x0e: UnimplementedInstruction(state); break;
 		case 0x0f: UnimplementedInstruction(state); break;
 		
-		case 0x10: UnimplementedInstruction(state); break;
+		case 0x10: break; //NOP
 		case 0x11: UnimplementedInstruction(state); break;
 		case 0x12: UnimplementedInstruction(state); break;
 		case 0x13: UnimplementedInstruction(state); break;
@@ -78,7 +82,7 @@ int Emulate8080Op(State8080* state)
 		case 0x15: UnimplementedInstruction(state); break;
 		case 0x16: UnimplementedInstruction(state); break;
 		case 0x17: UnimplementedInstruction(state); break;
-		case 0x18: UnimplementedInstruction(state); break;
+		case 0x18: break;
 		case 0x19: UnimplementedInstruction(state); break;
 		case 0x1a: UnimplementedInstruction(state); break;
 		case 0x1b: UnimplementedInstruction(state); break;
@@ -87,7 +91,7 @@ int Emulate8080Op(State8080* state)
 		case 0x1e: UnimplementedInstruction(state); break;
 		case 0x1f: UnimplementedInstruction(state); break;
 		
-		case 0x20: UnimplementedInstruction(state); break;
+		case 0x20: break; //NOP
 		case 0x21: UnimplementedInstruction(state); break;
 		case 0x22: UnimplementedInstruction(state); break;
 		case 0x23: UnimplementedInstruction(state); break;
@@ -95,7 +99,7 @@ int Emulate8080Op(State8080* state)
 		case 0x25: UnimplementedInstruction(state); break;
 		case 0x26: UnimplementedInstruction(state); break;
 		case 0x27: UnimplementedInstruction(state); break;
-		case 0x28: UnimplementedInstruction(state); break;
+		case 0x28: break; //NOP
 		case 0x29: UnimplementedInstruction(state); break;
 		case 0x2a: UnimplementedInstruction(state); break;
 		case 0x2b: UnimplementedInstruction(state); break;
@@ -104,7 +108,7 @@ int Emulate8080Op(State8080* state)
 		case 0x2e: UnimplementedInstruction(state); break;
 		case 0x2f: UnimplementedInstruction(state); break;
 		
-		case 0x30: UnimplementedInstruction(state); break;
+		case 0x30: break; //NOP
 		case 0x31: UnimplementedInstruction(state); break;
 		case 0x32: UnimplementedInstruction(state); break;
 		case 0x33: UnimplementedInstruction(state); break;
@@ -112,7 +116,7 @@ int Emulate8080Op(State8080* state)
 		case 0x35: UnimplementedInstruction(state); break;
 		case 0x36: UnimplementedInstruction(state); break;
 		case 0x37: UnimplementedInstruction(state); break;
-		case 0x38: UnimplementedInstruction(state); break;
+		case 0x38: break; //NOP
 		case 0x39: UnimplementedInstruction(state); break;
 		case 0x3a: UnimplementedInstruction(state); break;
 		case 0x3b: UnimplementedInstruction(state); break;
@@ -121,22 +125,50 @@ int Emulate8080Op(State8080* state)
 		case 0x3e: UnimplementedInstruction(state); break;
 		case 0x3f: UnimplementedInstruction(state); break;
 		
-		case 0x40: UnimplementedInstruction(state); break;
-		case 0x41: UnimplementedInstruction(state); break;
-		case 0x42: UnimplementedInstruction(state); break;
-		case 0x43: UnimplementedInstruction(state); break;
-		case 0x44: UnimplementedInstruction(state); break;
-		case 0x45: UnimplementedInstruction(state); break;
+		case 0x40: //MOV B,B
+			state->b = state->b;
+		break;
+		case 0x41: //MOV B,C
+			state->b = state->c;
+		break;
+		case 0x42: //MOV B,D
+			state->b = state->d;
+		break;
+		case 0x43: //MOV B,E
+			state->b = state->e;
+		break;
+		case 0x44: //MOV B,H
+			state->b = state->h;
+		break;
+		case 0x45: //MOV B,L
+			state->b = state->l;
+		break;
 		case 0x46: UnimplementedInstruction(state); break;
-		case 0x47: UnimplementedInstruction(state); break;
-		case 0x48: UnimplementedInstruction(state); break;
-		case 0x49: UnimplementedInstruction(state); break;
-		case 0x4a: UnimplementedInstruction(state); break;
-		case 0x4b: UnimplementedInstruction(state); break;
-		case 0x4c: UnimplementedInstruction(state); break;
-		case 0x4d: UnimplementedInstruction(state); break;
+		case 0x47: //MOV B,A
+			state->b = state->a;
+		break;
+		case 0x48: //MOV C,B
+			state->c = state->b;
+		break;
+		case 0x49: //MOV C,C
+			state->c = state->c;
+		break;
+		case 0x4a: //MOV C,D
+			state->c = state->d;
+		break;
+		case 0x4b: //MOV C,E
+			state->c = state->e;
+		break;
+		case 0x4c: //MOV C,H
+			state->c = state->h;
+		break;
+		case 0x4d: //MOV C,L
+			state->c = state->l;
+		break;
 		case 0x4e: UnimplementedInstruction(state); break;
-		case 0x4f: UnimplementedInstruction(state); break;
+		case 0x4f: //MOV C,A
+			state->c = state->a;
+		break;
 		
 		case 0x50: UnimplementedInstruction(state); break;
 		case 0x51: UnimplementedInstruction(state); break;
